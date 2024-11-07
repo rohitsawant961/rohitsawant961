@@ -22,6 +22,4 @@
 ---
 [![](https://visitcount.itsvg.in/api?id=rohitsawant961&icon=10&color=5)](https://visitcount.itsvg.in)
 
-![Snake Animation](https://github.com/rajchaudar/rohitsawant961/blob/main/dist/snake.svg)
-
-
+![Snake Animation](https://github.com/rohitsawant961/rohitsawant961/blob/main/dist/snake.svg)
