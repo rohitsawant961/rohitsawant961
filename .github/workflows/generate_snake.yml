@@ -1,0 +1,43 @@
+name: Generate Snake Animation
+
+on:
+  schedule: # Execute every 12 hours
+    - cron: "* */12 * * *"
+
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      # Step to checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Step to generate snake.svg
+      - name: Generate snake.svg
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: dist/snake.svg?palette=github-dark
+
+      # Step to handle pulling and pushing to the main branch
+      - name: Pull latest changes and Push snake.svg to the main branch
+        run: |
+          git config --global user.name 'rohitsawant961'
+          git config --global user.email 'rohitsawant961@gmail.com'
+          git checkout main
+          git pull origin main || echo "No remote changes to pull"
+          git add dist/snake.svg
+          git commit -m "Generated Snake Animation" || echo "No changes to commit"
+          git push origin main || echo "Push failed, possibly due to conflicts"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
