@@ -32,8 +32,8 @@ jobs:
       # Step to handle pulling and pushing to the main branch
       - name: Pull latest changes and Push snake.svg to the main branch
         run: |
-          git config --global user.name 'rohitsawant961'
-          git config --global user.email 'rohitsawant961@gmail.com'
+          git config --global user.name 'rohitsawant96123'
+          git config --global user.email 'rohitsawant96123@gmail.com'
           git checkout main
           git pull origin main || echo "No remote changes to pull"
           git add dist/snake.svg
